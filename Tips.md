@@ -10,7 +10,7 @@ vm.swappiness = 60
 + これを以下のように変更
 
 ```
-# echo 11 > /proc/sys/vm/swappiness
+# echo 1 > /proc/sys/vm/swappiness
 ```
 
 + /etc/sysctl.conf
