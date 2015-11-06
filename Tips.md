@@ -7,17 +7,21 @@
 vm.swappiness = 60
 ```
 
-これを以下のように変更
++ これを以下のように変更
 
 ```
 # echo 11 > /proc/sys/vm/swappiness
 ```
 
-```text:/etc/sysctl.conf
++ /etc/sysctl.conf
+
+```
 vm.swappiness = 1
 ```
 
-```text:反映
++ 反映
+
+```
 # sysctl -p
 ```
 
