@@ -1,0 +1,7 @@
+DEPENDENCIES
+  timezone-ii
+    git: https://github.com/L2G/timezone-ii.git
+    revision: 28c9e49c58c534e798cf01a77a9373c4c54f4587
+
+GRAPH
+  timezone-ii (0.2.9992)

@@ -1,0 +1,11 @@
+{
+  "name": "common",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "tz": "Asia/Tokyo"
+  },
+  "run_list": [
+    "recipe[timezone-ii::rhel]"
+  ]
+}
