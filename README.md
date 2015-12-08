@@ -74,7 +74,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ### ver 4.3.0
 # wget https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz
 ### ver 4.1.3
-### https://download.elastic.co/kibana/kibana/kibana-4.1.3-linux-x64.tar.gz
+### wget https://download.elastic.co/kibana/kibana/kibana-4.1.3-linux-x64.tar.gz
 
 # tar zvxf kibana-4.3.0-linux-x64.tar.gz
 # cp -ap kibana-4.3.0-linux-x64 /srv/kibana
