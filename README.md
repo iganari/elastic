@@ -28,7 +28,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
-+++ es
+### es
 
 ```
 # rpm -Uvh https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.1.0/elasticsearch-2.1.0.rpm
@@ -54,7 +54,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 }
 ```
 
-+++ Plugin
+### Plugin
 
 + Shield(https://www.elastic.co/downloads/shield)
 
@@ -65,7 +65,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 
 
 
-+++ kibana(https://www.elastic.co/thank-you?url=https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz)
+### kibana(https://www.elastic.co/thank-you?url=https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz)
 
 
 ```
