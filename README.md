@@ -2,18 +2,6 @@
 
 
 
-### cmd
-
-+ es restart
-
-```
-# service 
-```
-<<<<<<< HEAD
-update
-=======
-
-
 
 ### インストール方法(elasticsearch 2)
 
@@ -109,4 +97,3 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 # sh -c "curl https://raw.githubusercontent.com/akabdog/scripts/master/kibana4_init > /etc/init.d/kibana"
 # chmod 755 /etc/init.d/kibana
 ```
->>>>>>> c56385977588829faafd2109d1da0e7ee9bb8492
