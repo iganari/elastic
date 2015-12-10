@@ -2,31 +2,30 @@
 
 BASEPATH=$(cd `dirname $0`; pwd)
 
-### install nginx
-rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
-yum -y install nginx
+### ### install java
+### wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+### rpm -Uhv jdk-8u45-linux-x64.rpm
+### 
+### sleep 5
+### 
+### ### check version java
+### java -version
+### 
+### ### Download and install the public signing key
+### rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 
-### install php 5.6
-yum -y install epel-release
-rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-yum -y install --enablerepo=remi-php56,remi,epel vim-enhanced php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof php-fpm php-pdo php-mcrypt php-pecl-memcached php-pecl-msgpack
 
-### setting php 
-mv  /etc/php.ini /etc/php.ini.bk  
-ln -s ${BASEPATH}/opsfiles/php.ini /etc/ 
-# sed -i -e 's/;date.timezone =/date.timezone = "Asia\/Tokyo"/' /etc/php.ini | grep date.timezone
+file='/etc/yum.repos.d/es.repo'
+touch ${file}
 
-### setting php-fpm
-sed -i -e 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf
-sed -i -e 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
 
-sleep 1
-
-service   php-fpm restart
-chkconfig php-fpm on
-
-service   nginx restart
-chkconfig nginx on
-
+cat << __EOF__ >> ${file}
+[elasticsearch-1.7]
+name=Elasticsearch repository for 1.7.x packages
+baseurl=http://packages.elastic.co/elasticsearch/1.7/centos
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1 
+__EOF__
 
 exit

@@ -90,7 +90,9 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
 
++ yum repo
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html
 
 
 ```
