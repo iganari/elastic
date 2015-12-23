@@ -99,3 +99,9 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 # sh -c "curl https://raw.githubusercontent.com/akabdog/scripts/master/kibana4_init > /etc/init.d/kibana"
 # chmod 755 /etc/init.d/kibana
 ```
+
+
+### 参考URL
+
++ Vagrantで複数台同時起動するマルチマシン設定
+    + http://weblabo.oscasierra.net/vagrant-malti-machine/
