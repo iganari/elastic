@@ -14,9 +14,9 @@ else
   wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
   cp -f /home/vagrant/${JDKFILE} ${SCRPATH}/opsfiles/jdk/
   ### /home/vagrantに保存される
-
 fi
 
+cd ${SCRPATH}/opsfiles/jdk/
 rpm -Uhv ${JDKFILE}
 
 
@@ -59,6 +59,7 @@ array=(
        'mobz/elasticsearch-head'
        'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
        'royrusso/elasticsearch-HQ'
+       'lukas-vlcek/bigdesk/2.4.0'
        )
 
 for i in ${array[@]}
