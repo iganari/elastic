@@ -1,16 +1,18 @@
 #!/bin/bash
 
+### define
 BASEPATH=$(cd `dirname $0`; pwd)
-
-### install java
+SCRPATH='/develop/dev.es'
 JDKFILE='jdk-8u45-linux-x64.rpm'
 
-if [ -f ${BASEPATH}/${JDKFILE} ]; then
+### install java
+if [ -f ${SCRPATH}/${JDKFILE} ]; then
   ### when jdk exicts in local
-  echo "is"
+  echo 'wget skip'
 else
   ### when jdk does not exist in local
   wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+  cp -f /home/vagrant/${JDKFILE} ${SCRPATH}/opsfiles/jdk/
   ### /home/vagrantに保存される
 
 fi
