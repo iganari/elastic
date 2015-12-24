@@ -1,11 +1,26 @@
 #!/bin/bash
 
+### define
 BASEPATH=$(cd `dirname $0`; pwd)
+SCRPATH='/develop/dev.es'
+JDKFILE='jdk-8u45-linux-x64.rpm'
 
 ### install java
-wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
-# cd /develop/dev.es
-rpm -Uhv jdk-8u45-linux-x64.rpm
+if [ -f ${SCRPATH}/opsfiles/jdk/${JDKFILE} ]; then
+  ### when jdk exicts in local
+  echo 'wget skip'
+else
+  ### when jdk does not exist in local
+  wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+  # cp -f /home/vagrant/${JDKFILE} ${SCRPATH}/opsfiles/jdk/
+  cp -f ${JDKFILE} ${SCRPATH}/opsfiles/jdk/
+  ### /home/vagrantに保存される
+fi
+
+cd ${SCRPATH}/opsfiles/jdk/
+rpm -Uhv ${JDKFILE}
+
+
 
 ### sleep 5
 ### 
@@ -37,5 +52,22 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
+
+### install plugin
+cd /usr/share/elasticsearch
+
+array=(
+       'mobz/elasticsearch-head'
+       'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
+       'royrusso/elasticsearch-HQ'
+       'lukas-vlcek/bigdesk/2.4.0'
+       )
+
+for i in ${array[@]}
+  do
+    bin/plugin -install ${i}
+  done
+
+service elasticsearch restart
 
 exit

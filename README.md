@@ -100,6 +100,34 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 # chmod 755 /etc/init.d/kibana
 ```
 
+### esのクラスタを作る
+
++ 以下の2点を設定
+
++ cluster.nameを揃える
++ /etc/elasticsearch/elasticsearch.yml
+    + l.32あたり
+
+```
+- #cluster.name: elasticsearch
++ cluster.name: es-cluster
+```
+
++ ネットワークの設定
++ /etc/elasticsearch/elasticsearch.yml
+    + l.205
+
+```
+### networkが192.168.3.0/24の場合
+- #network.bind_host: 192.168.0.1
++ network.bind_host: 192.168.3.1
+
+### vagrantで動かしている場合
+- #network.bind_host: 192.168.0.1
++ network.host: '_eth1:ipv4_'
+```
+
+
 
 ### 参考URL
 
