@@ -3,9 +3,19 @@
 BASEPATH=$(cd `dirname $0`; pwd)
 
 ### install java
-wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
-# cd /develop/dev.es
-rpm -Uhv jdk-8u45-linux-x64.rpm
+JDKFILE='jdk-8u45-linux-x64.rpm'
+
+if [ -f ${BASEPATH}/${JDKFILE} ]; then
+  ### when jdk exicts in local
+  echo "is"
+else
+  ### when jdk does not exist in local
+  wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+fi
+
+rpm -Uhv ${JDKFILE}
+
+
 
 ### sleep 5
 ### 
