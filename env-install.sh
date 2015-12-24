@@ -11,6 +11,8 @@ if [ -f ${BASEPATH}/${JDKFILE} ]; then
 else
   ### when jdk does not exist in local
   wget --no-check-certificate --no-cookies - --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+  ### /home/vagrantに保存される
+
 fi
 
 rpm -Uhv ${JDKFILE}
@@ -47,5 +49,21 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
+
+### install plugin
+cd /usr/share/elasticsearch
+
+array=(
+       'mobz/elasticsearch-head'
+       'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
+       'royrusso/elasticsearch-HQ'
+       )
+
+for i in ${array[@]}
+  do
+    bin/plugin -install ${i}
+  done
+
+service elasticsearch restart
 
 exit
