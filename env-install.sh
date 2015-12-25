@@ -68,6 +68,11 @@ for i in ${array[@]}
     bin/plugin -install ${i}
   done
 
+### symlink
+mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+
+
 service elasticsearch restart
 
 exit

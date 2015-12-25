@@ -130,7 +130,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 ```
 ### symlink
 # mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-# ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml 
+# ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
 # service elasticsearch restart
 ```
 
