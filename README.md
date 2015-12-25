@@ -2,15 +2,6 @@
 
 
 
-### cmd
-
-+ es restart
-
-```
-# service 
-```
-
-
 
 ### インストール方法(elasticsearch 2)
 
@@ -99,10 +90,62 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
 
++ yum repo
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html
 
 
 ```
 # sh -c "curl https://raw.githubusercontent.com/akabdog/scripts/master/kibana4_init > /etc/init.d/kibana"
 # chmod 755 /etc/init.d/kibana
 ```
+
+### esのクラスタを作る
+
++ 以下の2点を設定
+
++ cluster.nameを揃える
++ /etc/elasticsearch/elasticsearch.yml
+    + l.32あたり
+
+```
+- #cluster.name: elasticsearch
++ cluster.name: es-cluster
+```
+
++ ネットワークの設定
++ /etc/elasticsearch/elasticsearch.yml
+    + l.205
+
+```
+### networkが192.168.3.0/24の場合
+- #network.bind_host: 192.168.0.1
++ network.bind_host: 192.168.3.1
+
+### vagrantで動かしている場合
+- #network.bind_host: 192.168.0.1
++ network.host: '_eth1:ipv4_'
+
+### シャード数の変更(l.108)
+- #index.number_of_shards: 5
++  index.number_of_shards: 5
+
+### レプリカの変更(l.112)
+- #index.number_of_replicas: 1
++  index.number_of_replicas: 1
+```
+
+
+
+```
+### symlink
+# mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+# ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+# service elasticsearch restart
+```
+
+
+### 参考URL
+
++ Vagrantで複数台同時起動するマルチマシン設定
+    + http://weblabo.oscasierra.net/vagrant-malti-machine/
