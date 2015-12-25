@@ -1,5 +1,5 @@
 .DS_Store
 .vagrant
 jdk*.rpm
-master.zip
-Elasticsearch-datasets-master
+master.zip*
+Elasticsearch-datasets-master*
