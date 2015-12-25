@@ -38,6 +38,6 @@ Vagrant.configure("2") do |config|
     chef.add_role "common"
   end
 
-  config.vm.provision :shell, :path => "../env-install.sh"
+  config.vm.provision :shell, :path => "../env-install_1.x.sh"
 
 end
