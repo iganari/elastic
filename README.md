@@ -127,6 +127,12 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 + network.host: '_eth1:ipv4_'
 ```
 
+```
+### symlink
+# mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+# ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml 
+# service elasticsearch restart
+```
 
 
 ### 参考URL
