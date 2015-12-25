@@ -125,7 +125,17 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 ### vagrantで動かしている場合
 - #network.bind_host: 192.168.0.1
 + network.host: '_eth1:ipv4_'
+
+### シャード数の変更(l.108)
+- #index.number_of_shards: 5
++  index.number_of_shards: 5
+
+### レプリカの変更(l.112)
+- #index.number_of_replicas: 1
++  index.number_of_replicas: 1
 ```
+
+
 
 ```
 ### symlink
