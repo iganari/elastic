@@ -52,6 +52,12 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
+### symlink
+mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+
+service elasticsearch restart
+
 
 ### install plugin
 cd /usr/share/elasticsearch
