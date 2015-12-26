@@ -50,11 +50,12 @@ chkconfig      elasticsearch on
 
 sleep 15
 
-curl -X GET http://localhost:9200
+# curl -X GET http://localhost:9200   # ver 1.x
+curl http://127.0.0.1:9200            # ver 2.x
 
 ### ### symlink
 ### mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-### ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+### ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_2.x.yml /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch restart
 
@@ -63,15 +64,15 @@ service elasticsearch restart
 cd /usr/share/elasticsearch
 
 array=(
-       'mobz/elasticsearch-head'
-       'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
-       'royrusso/elasticsearch-HQ'
-       'lukas-vlcek/bigdesk/2.4.0'
+       'analysis-icu'
+       'analysis-kuromoji'
+       'license'
+       'marvel-agent'
        )
 
 for i in ${array[@]}
   do
-    bin/plugin -install ${i}
+    bin/plugin install ${i}
   done
 
 service elasticsearch restart
