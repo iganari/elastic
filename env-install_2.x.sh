@@ -34,12 +34,12 @@ file='/etc/yum.repos.d/es.repo'
 touch ${file}
 
 cat << __EOF__ >> ${file}
-[elasticsearch-1.7]
-name=Elasticsearch repository for 1.7.x packages
-baseurl=http://packages.elastic.co/elasticsearch/1.7/centos
+[elasticsearch-2.x]
+name=Elasticsearch repository for 2.x packages
+baseurl=http://packages.elastic.co/elasticsearch/2.x/centos
 gpgcheck=1
 gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
-enabled=1 
+enabled=1
 __EOF__
 
 
@@ -52,9 +52,9 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
-### symlink
-mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+### ### symlink
+### mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+### ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
 
 service elasticsearch restart
 
