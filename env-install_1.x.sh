@@ -65,6 +65,7 @@ cd /usr/share/elasticsearch
 array=(
        'mobz/elasticsearch-head'
        'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
+       'elasticsearch/marvel/latest'
        'royrusso/elasticsearch-HQ'
        'lukas-vlcek/bigdesk/2.4.0'
        )
