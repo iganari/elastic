@@ -54,7 +54,7 @@ curl -X GET http://localhost:9200
 
 ### symlink
 mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_1.x.yml /etc/elasticsearch/elasticsearch.yml
+cp -a /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_1.x.yml /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch restart
 
