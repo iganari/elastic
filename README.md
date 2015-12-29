@@ -115,7 +115,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositori
 
 + ネットワークの設定
 + /etc/elasticsearch/elasticsearch.yml
-    + l.205
+    + l.215
 
 ```
 ### networkが192.168.3.0/24の場合

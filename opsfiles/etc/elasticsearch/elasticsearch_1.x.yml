@@ -39,6 +39,7 @@ cluster.name: es-cluster
 # from configuring them manually. You can tie this node to a specific name:
 #
 #node.name: "Franz Kafka"
+node.name: ${HOSTNAME}
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -106,10 +107,12 @@ cluster.name: es-cluster
 # Set the number of shards (splits) of an index (5 by default):
 #
 #index.number_of_shards: 5
+index.number_of_shards: 10
 
 # Set the number of replicas (additional copies) of an index (1 by default):
 #
 #index.number_of_replicas: 1
+index.number_of_replicas: 1
 
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
@@ -202,16 +205,17 @@ cluster.name: es-cluster
 # Set the bind address specifically (IPv4 or IPv6):
 #
 #network.bind_host: 192.168.0.1
-network.host: '_eth1:ipv4_'
 
 # Set the address other nodes will use to communicate with this node. If not
 # set, it is automatically derived. It must point to an actual IP address.
 #
 #network.publish_host: 192.168.0.1
+network.publish_host: '_eth1:ipv4_'
 
 # Set both 'bind_host' and 'publish_host':
 #
 #network.host: 192.168.0.1
+# network.host: '_eth1:ipv4_'
 
 # Set a custom port for the node to node communication (9300 by default):
 #

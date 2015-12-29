@@ -54,7 +54,7 @@ curl -X GET http://localhost:9200
 
 ### symlink
 mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/
+ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_1.x.yml /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch restart
 
@@ -65,6 +65,7 @@ cd /usr/share/elasticsearch
 array=(
        'mobz/elasticsearch-head'
        'elasticsearch/elasticsearch-analysis-kuromoji/2.7.0'
+       'elasticsearch/marvel/latest'
        'royrusso/elasticsearch-HQ'
        'lukas-vlcek/bigdesk/2.4.0'
        )
