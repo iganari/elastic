@@ -100,6 +100,7 @@
 cluster.name: es-cluster
 node.name: ${HOSTNAME}
 http.port: 9200
+network.publish_host: '_eth1:ipv4_'
 
 # network.host: 192.168.33.21
 # discovery.zen.ping.unicast.hosts: ["192.168.33.21","192.168.33.23","192.168.33.23"]
