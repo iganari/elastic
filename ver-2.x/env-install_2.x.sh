@@ -53,9 +53,9 @@ sleep 15
 # curl -X GET http://localhost:9200   # ver 1.x
 curl http://127.0.0.1:9200            # ver 2.x
 
-### ### symlink
-### mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-### ln -s /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_2.x.yml /etc/elasticsearch/elasticsearch.yml
+### symlink
+mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
+cp -a /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_2.x.yml /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch restart
 
