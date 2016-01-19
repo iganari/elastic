@@ -1,0 +1,79 @@
+Vagrant.configure("2") do |config|
+  # config.vm.box = "bento/centos-6.7"
+  config.vbguest.auto_update = false
+
+  config.vm.define :svr01 do |server|
+    server.vm.network :private_network, ip: "192.168.33.21"
+    server.vm.hostname = 'deves01'
+    server.vm.box = "bento/centos-6.7"
+  end
+  ### config.vm.define :svr02 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.22"
+  ###   server.vm.hostname = 'deves02'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr03 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.23"
+  ###   server.vm.hostname = 'deves03'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr04 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.24"
+  ###   server.vm.hostname = 'deves04'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr05 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.25"
+  ###   server.vm.hostname = 'deves05'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr06 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.26"
+  ###   server.vm.hostname = 'deves06'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr07 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.27"
+  ###   server.vm.hostname = 'deves07'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr08 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.28"
+  ###   server.vm.hostname = 'deves08'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr09 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.29"
+  ###   server.vm.hostname = 'deves09'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+  ### config.vm.define :svr10 do |server|
+  ###   server.vm.network :private_network, ip: "192.168.33.30"
+  ###   server.vm.hostname = 'deves10'
+  ###   server.vm.box = "bento/centos-6.7"
+  ### end
+
+  config.vm.synced_folder "../", "/develop/dev.es", \
+    :create => true, \
+    :owner => 'root', \
+    :group => 'root', \
+    :mount_options => ['dmode=755,fmode=644']
+
+  config.vm.provider :virtualbox do |vb|
+    # vb.name = "dev.es"
+    vb.customize ["modifyvm", :id, "--memory", 512]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+
+  config.omnibus.chef_version=:latest
+  config.vm.provision "chef_zero" do |chef|
+    chef.cookbooks_path = "./es/cookbooks"
+    chef.roles_path = "es/roles"
+    chef.add_role "common"
+  end
+
+  config.vm.provision :shell, :path => "../env-install_1.x.sh"
+  config.vm.provision :shell, :path => "../install-kibana.sh"
+
+end
