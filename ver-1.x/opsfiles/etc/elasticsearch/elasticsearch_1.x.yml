@@ -30,8 +30,6 @@
 # multiple clusters on the same network, make sure you're using unique names.
 #
 #cluster.name: elasticsearch
-cluster.name: es-cluster
-
 
 #################################### Node #####################################
 
@@ -39,7 +37,6 @@ cluster.name: es-cluster
 # from configuring them manually. You can tie this node to a specific name:
 #
 #node.name: "Franz Kafka"
-node.name: ${HOSTNAME}
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -107,12 +104,10 @@ node.name: ${HOSTNAME}
 # Set the number of shards (splits) of an index (5 by default):
 #
 #index.number_of_shards: 5
-index.number_of_shards: 3
 
 # Set the number of replicas (additional copies) of an index (1 by default):
 #
 #index.number_of_replicas: 1
-index.number_of_replicas: 1
 
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
@@ -210,7 +205,6 @@ index.number_of_replicas: 1
 # set, it is automatically derived. It must point to an actual IP address.
 #
 #network.publish_host: 192.168.0.1
-network.publish_host: '_eth1:ipv4_'
 
 # Set both 'bind_host' and 'publish_host':
 #
@@ -389,3 +383,29 @@ network.publish_host: '_eth1:ipv4_'
 # it unless you need it is recommended (it is disabled by default).
 #
 #http.jsonp.enable: true
+
+################################## my setting ################################
+### cluster
+cluster.name: es-cluster
+
+### node 
+node.name: ${HOSTNAME}
+
+# node.master: ture
+# node.data: false
+# if node.master=m, node.data=d
+# { m , d } = { true , ture } = default
+#           = { false , ture } = workhorse
+#           = { ture , false } = coordinator
+#           = { false , false } = LoadBlancer
+
+
+### index
+index.number_of_shards: 3
+index.number_of_replicas: 1
+
+### Network And HTTP
+network.publish_host: '_eth1:ipv4_'
+
+### Memory
+bootstrap.mlockall: true

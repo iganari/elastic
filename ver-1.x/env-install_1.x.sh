@@ -52,9 +52,12 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
-### symlink
+### copy elasticsearch setting
 mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
 cp -a /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_1.x.yml /etc/elasticsearch/elasticsearch.yml
+mv /etc/sysconfig/elasticsearch /etc/sysconfig/elasticsearch.bk
+cp -a /develop/dev.es/opsfiles/etc/sysconfig/elasticsearch_1.x /etc/sysconfig/elasticsearch
+
 
 service elasticsearch restart
 
