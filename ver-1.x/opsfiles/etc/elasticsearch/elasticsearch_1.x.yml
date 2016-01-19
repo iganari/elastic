@@ -391,12 +391,12 @@ cluster.name: es-cluster
 ### node 
 node.name: ${HOSTNAME}
 
-# node.master: ture
+# node.master: true
 # node.data: false
 # if node.master=m, node.data=d
-# { m , d } = { true , ture } = default
-#           = { false , ture } = workhorse
-#           = { ture , false } = coordinator
+# { m , d } = { true , true } = default
+#           = { false , true } = workhorse
+#           = { true , false } = coordinator
 #           = { false , false } = LoadBlancer
 
 
