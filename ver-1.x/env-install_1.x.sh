@@ -52,12 +52,18 @@ sleep 15
 
 curl -X GET http://localhost:9200
 
-### symlink
+### copy elasticsearch setting
 mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
 cp -a /develop/dev.es/opsfiles/etc/elasticsearch/elasticsearch_1.x.yml /etc/elasticsearch/elasticsearch.yml
+mv /etc/sysconfig/elasticsearch /etc/sysconfig/elasticsearch.bk
+cp -a /develop/dev.es/opsfiles/etc/sysconfig/elasticsearch_1.x /etc/sysconfig/elasticsearch
 
 service elasticsearch restart
+sleep 10s
 
+### server setting
+echo 'vm.swappiness = 1' > /etc/sysctl.conf
+sysctl -a | grep swap
 
 ### install plugin
 cd /usr/share/elasticsearch
@@ -76,5 +82,9 @@ for i in ${array[@]}
   done
 
 service elasticsearch restart
+sleep 10s
+
+### chk plugin
+curl -XGET 'http://localhost:9200/_nodes?plugin=true&pretty'
 
 exit

@@ -1,22 +1,32 @@
 # Tips
 
-### memryを使い切る場合
+### swapを効かせなようにしたい
+
++ 現在のmemswapの優先度の確認
+    + 0 ~ 100で設定が出来、あくまで"度合い"を示す数値
+    + 0 = RAMを使いきるまでスワップしない
+    + 100 = パフォーマンスに影響が出るほどスワップしまくる
 
 ```
 # sysctl -a | grep swap
 vm.swappiness = 60
 ```
 
-+ これを以下のように変更
++ サーバ再起動までの一時的な変更をしたい場合は以下のコマンド
 
 ```
 # echo 1 > /proc/sys/vm/swappiness
-```
-
-+ /etc/sysctl.conf
-
-```
+#
+# sysctl -a | grep swap
 vm.swappiness = 1
+```
+
++ 恒久的に設定を変更する場合
+
+```
+# vi /etc/sysctl.conf
+
++ vm.swappiness = 1
 ```
 
 + 反映
