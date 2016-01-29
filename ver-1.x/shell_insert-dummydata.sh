@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PRIVATEIP=`cat /etc/sysconfig/network-scripts/ifcfg-eth1 | grep "IPADDR" | cut -d\= -f2`
-PRIVATEIP='192.168.33.21'
+# PRIVATEIP='192.168.33.21'
 
 
 yum install -y unzip
