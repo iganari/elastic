@@ -60,18 +60,7 @@
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
 #
-# ---------------------------------- Gateway -----------------------------------
-#
-# Block initial recovery after a full cluster restart until N nodes are started:
-#
-# gateway.recover_after_nodes: 3
-#
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
-#
 # --------------------------------- Discovery ----------------------------------
-#
-# Elasticsearch nodes will find each other via unicast, by default.
 #
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
@@ -85,6 +74,15 @@
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
 #
+# ---------------------------------- Gateway -----------------------------------
+#
+# Block initial recovery after a full cluster restart until N nodes are started:
+#
+# gateway.recover_after_nodes: 3
+#
+# For more information, see the documentation at:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
+#
 # ---------------------------------- Various -----------------------------------
 #
 # Disable starting multiple nodes on a single system:
@@ -94,14 +92,3 @@
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
-
-
-### private setting
-cluster.name: es-cluster
-node.name: ${HOSTNAME}
-http.port: 9200
-network.host: '_eth1:ipv4_'
-
-
-# discovery.zen.ping.unicast.hosts: ["192.168.33.21","192.168.33.23","192.168.33.23"]
-
