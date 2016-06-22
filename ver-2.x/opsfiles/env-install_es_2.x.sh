@@ -53,10 +53,22 @@ sleep 15
 curl http://127.0.0.1:9200            # ver 2.x
 
 ### symlink
-mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bk
-cp -a ${SCRPATH}/etc/elasticsearch/elasticsearch_2.x.yml /etc/elasticsearch/elasticsearch.yml
-chown root.elasticsearch /etc/elasticsearch/elasticsearch.yml
-chmod 750                /etc/elasticsearch/elasticsearch.yml
+ES_YML='/etc/elasticsearch/elasticsearch.yml'
+
+mv ${ES_YML} ${ES_YML}.bk
+cp -a ${SCRPATH}/etc/elasticsearch/elasticsearch_2.x.yml ${ES_YML}
+chown root.elasticsearch ${ES_YML}
+chmod 750                ${ES_YML}
+
+if [ ${HOSTNAME} = deves01 ]
+  then
+    echo 'node.master: true'  >> ${ES_YML}
+    echo 'node.date:   false' >> ${ES_YML}
+  else
+    echo 'node.master: false'  >> ${ES_YML}
+    echo 'node.date:   true'   >> ${ES_YML}
+fi
+
 
 service elasticsearch restart
 
@@ -80,12 +92,7 @@ for i in ${array[@]}
   done
 
 ### append hosts
-cat << __EOF__ >> /etc/hosts
-192.168.33.21 deves01
-192.168.33.22 deves02
-192.168.33.23 deves03
-192.168.33.21 dedes01
-__EOF__
+cat ${SCRPATH}/etc/hosts-append >> /etc/hosts
 
 
 service elasticsearch restart
