@@ -1,0 +1,69 @@
+### This is my Seeting of Elasticsearch v2.3.3
+
+# Use a descriptive name for your cluster:
+cluster.name: es-cluster
+#
+# ------------------------------------ Node ------------------------------------
+#
+# Use a descriptive name for the node:
+#
+node.name: ${HOSTNAME}
+#
+# Add custom attributes to the node:
+#
+# node.rack: r1
+#
+# ----------------------------------- Paths ------------------------------------
+
+# Path to directory where to store the data (separate multiple locations by comma):
+path.data: /var/lib/elasticsearch/
+
+# Path to log files:
+path.logs: /var/log/elasticsearch/
+
+# Lock the memory on startup:
+bootstrap.mlockall: true
+
+# Set the bind address to a specific IP (IPv4 or IPv6):
+network.bind_host: 0.0.0.0
+network.publish_host: _eth1:ipv4_
+
+
+# Set a custom port for HTTP:
+http.port: 9200
+
+# cluster setting
+discovery.zen.ping.unicast.hosts: [ deves01, deves02, deves03, deves04 ]
+
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when new node is started:
+# The default list of hosts is ["127.0.0.1", "[::1]"]
+#
+# discovery.zen.ping.unicast.hosts: ["host1", "host2"]
+#
+# Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
+#
+# discovery.zen.minimum_master_nodes: 3
+#
+# For more information, see the documentation at:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
+#
+# ---------------------------------- Gateway -----------------------------------
+#
+# Block initial recovery after a full cluster restart until N nodes are started:
+#
+# gateway.recover_after_nodes: 3
+#
+# For more information, see the documentation at:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
+#
+# ---------------------------------- Various -----------------------------------
+#
+# Disable starting multiple nodes on a single system:
+#
+# node.max_local_storage_nodes: 1
+#
+# Require explicit names when deleting indices:
+#
+# action.destructive_requires_name: true
