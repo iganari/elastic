@@ -21,4 +21,18 @@
 
 - name: copy elasticsearch basic setting
   copy: >
-    src=roles/elasticsearch/files/elasticsearch
+    src=roles/elasticsearch/files/elasticsearch.yml
+    dest=/etc/elasticsearch/elasticsearch.yml
+    owner=root
+    group=elasticsearch
+    mode=0750
+
+- name: insert nodes ip
+  lineinfile: >
+    dest=/etc/elasticsearch/elasticsearch.yml
+    line="{{ item }}"
+  with_items:
+    - 'node.master: true'
+    - 'node.date:   false'
+  notify:
+    - es restart
