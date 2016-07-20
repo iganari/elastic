@@ -36,3 +36,23 @@
     - 'node.date:   false'
   notify:
     - es restart
+
+- name: add hosts
+  lineinfile: >
+    dest=/etc/hosts
+    line="{{ item }}"
+  with_items:
+    - '192.168.33.21 deves01'
+    - '192.168.33.22 deves02'
+    - '192.168.33.23 deves03'
+    - '192.168.33.24 deves04'
+
+- name: install plugin
+  shell: bin/plugin install "{{ item }}" chdir=/usr/share/elasticsearch
+  with_items:
+    - analysis-icu
+    - analysis-kuromoji 
+    - mobz/elasticsearch-head
+    - royrusso/elasticsearch-HQ
+    - license
+    - marvel-agent
