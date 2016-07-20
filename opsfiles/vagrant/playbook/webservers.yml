@@ -4,6 +4,7 @@
   roles:
     - common
     - java
+    - elasticsearch
 
 # - hosts: wercker
 #   roles:

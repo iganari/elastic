@@ -1,0 +1,24 @@
+---
+
+- name: download public signing key
+  shell: rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: make elastic repository
+  copy: >
+    src=roles/elasticsearch/files/es.repo
+    dest=/etc/yum.repos.d/es.repo
+    owner=root
+    group=root
+    mode=0644
+
+- name: install elasticsearch
+  yum: > 
+    name=elasticsearch
+    state=latest
+    enablerepo=elasticsearch
+  notify:
+    - es install
+
+- name: copy elasticsearch basic setting
+  copy: >
+    src=roles/elasticsearch/files/elasticsearch
