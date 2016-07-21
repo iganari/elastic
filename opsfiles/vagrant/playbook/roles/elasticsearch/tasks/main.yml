@@ -33,7 +33,7 @@
     line="{{ item }}"
   with_items:
     - 'node.master: true'
-    - 'node.date:   false'
+    - 'node.data:   false'
   when: node == "master"
   notify:
     - es restart
@@ -44,7 +44,7 @@
     line="{{ item }}"
   with_items:
     - 'node.master: true'
-    - 'node.date:   true'
+    - 'node.data:   true'
   when: node == "search"
   notify:
     - es restart
@@ -55,7 +55,7 @@
     line="{{ item }}"
   with_items:
     - 'node.master: false'
-    - 'node.date:   true'
+    - 'node.data:   true'
   when: node == "data"
   notify:
     - es restart
@@ -69,6 +69,7 @@
     - '192.168.33.22 deves02'
     - '192.168.33.23 deves03'
     - '192.168.33.24 deves04'
+    - '192.168.33.24 deves05'
 
 - name: install plugin
   shell: bin/plugin install "{{ item }}" chdir=/usr/share/elasticsearch
