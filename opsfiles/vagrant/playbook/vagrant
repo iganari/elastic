@@ -13,3 +13,7 @@
 
 [es-master:vars]
 node=master
+[es-search:vars]
+node=search
+[es-data:vars]
+node=data

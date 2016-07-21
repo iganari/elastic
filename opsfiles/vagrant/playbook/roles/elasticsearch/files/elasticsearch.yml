@@ -33,8 +33,8 @@ network.publish_host: _eth1:ipv4_
 http.port: 9200
 
 # cluster setting
-discovery.zen.ping.unicast.hosts: [ deves01 ]
-# discovery.zen.ping.unicast.hosts: [ deves01, deves02, deves03, deves04 ]
+# discovery.zen.ping.unicast.hosts: [ deves01 ]
+discovery.zen.ping.unicast.hosts: [ deves01, deves02, deves03, deves04 ]
 
 # --------------------------------- Discovery ----------------------------------
 #

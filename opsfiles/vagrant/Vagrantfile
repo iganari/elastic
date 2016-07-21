@@ -11,18 +11,18 @@ Vagrant.configure("2") do |config|
     server.vm.hostname = 'deves01'
     server.vm.box = "bento/centos-6.7"
   end
-  # config.vm.define :deves02 do |server|
-  #   server.vm.network :private_network, ip: "192.168.33.22"
-  #   server.vm.hostname = 'deves02'
-  # end
-  # config.vm.define :deves03 do |server|
-  #   server.vm.network :private_network, ip: "192.168.33.23"
-  #   server.vm.hostname = 'deves03'
-  # end
-  # config.vm.define :deves04 do |server|
-  #   server.vm.network :private_network, ip: "192.168.33.24"
-  #   server.vm.hostname = 'deves04'
-  # end
+  config.vm.define :deves02 do |server|
+    server.vm.network :private_network, ip: "192.168.33.22"
+    server.vm.hostname = 'deves02'
+  end
+  config.vm.define :deves03 do |server|
+    server.vm.network :private_network, ip: "192.168.33.23"
+    server.vm.hostname = 'deves03'
+  end
+  config.vm.define :deves04 do |server|
+    server.vm.network :private_network, ip: "192.168.33.24"
+    server.vm.hostname = 'deves04'
+  end
 
   config.vm.provider :virtualbox do |vb|
     # vb.name = "dev.es"

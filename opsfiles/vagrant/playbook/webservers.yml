@@ -5,6 +5,17 @@
     - common
     - java
     - elasticsearch
+- hosts: es-search
+  roles:
+    - common
+    - java
+    - elasticsearch
+
+- hosts: es-data
+  roles:
+    - common
+    - java
+    - elasticsearch
 
 # - hosts: wercker
 #   roles:

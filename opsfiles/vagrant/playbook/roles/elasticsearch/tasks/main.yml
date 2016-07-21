@@ -38,6 +38,28 @@
   notify:
     - es restart
 
+- name: insert nodes ip
+  lineinfile: >
+    dest=/etc/elasticsearch/elasticsearch.yml
+    line="{{ item }}"
+  with_items:
+    - 'node.master: true'
+    - 'node.date:   true'
+  when: node == "search"
+  notify:
+    - es restart
+
+- name: insert nodes ip
+  lineinfile: >
+    dest=/etc/elasticsearch/elasticsearch.yml
+    line="{{ item }}"
+  with_items:
+    - 'node.master: false'
+    - 'node.date:   true'
+  when: node == "data"
+  notify:
+    - es restart
+
 - name: add hosts
   lineinfile: >
     dest=/etc/hosts
