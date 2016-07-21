@@ -80,3 +80,4 @@
     - royrusso/elasticsearch-HQ
     - license
     - marvel-agent
+  when == search
