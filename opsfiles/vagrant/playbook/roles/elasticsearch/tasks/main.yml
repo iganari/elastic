@@ -34,6 +34,7 @@
   with_items:
     - 'node.master: true'
     - 'node.date:   false'
+  when: node == "master"
   notify:
     - es restart
 
