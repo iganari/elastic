@@ -1,7 +1,0 @@
-source "https://supermarket.chef.io"
-
-cookbook 'timezone-ii', git: "https://github.com/L2G/timezone-ii.git"
-cookbook 'git',           '=4.2.4'
-cookbook 'elasticsearch', '~> 2.1.0'
-cookbook 'iptables',      '~> 2.0.1'
-cookbook 'vim',           '~> 2.0.0'
