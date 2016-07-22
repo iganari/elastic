@@ -1,18 +1,11 @@
 #!/bin/bash
+### https://www.elastic.co/guide/en/elasticsearch/reference/2.3/_exploring_your_data.html
 
-PRIVATEIP=`cat /etc/sysconfig/network-scripts/ifcfg-eth1 | grep "IPADDR" | cut -d\= -f2`
-PRIVATEIP='192.168.33.21'
+dl_url='https://github.com/bly2k/files/blob/master/accounts.zip?raw=true'
 
+cd /tmp
+wget ${dl_url} -O /tmp/accounts.zip
+tar zxvf /tmp/accounts.zip 
 
-yum install -y unzip
-wget https://github.com/stormpython/Elasticsearch-datasets/archive/master.zip
-unzip master.zip
-cd Elasticsearch-datasets-master/
-
-curl -XPOST ${PRIVATEIP}:9200/test_index
-curl -XPUT  ${PRIVATEIP}:9200/test_index/2013/_mapping -d @mappings/nfl_mapping.json
-curl -XPOST ${PRIVATEIP}:9200/test_index/2013/_bulk --data-binary @datasets/nfl_2013.json > /dev/null
-
-cd ../
-rm -rf master.zip
-rm -rf Elasticsearch-datasets-master
+curl -XPOST '192.168.33.22:9200/bank/account/_bulk?pretty' --data-binary "@/tmp/accounts.json"
+curl '192.168.33.22:9200/_cat/indices?v'
