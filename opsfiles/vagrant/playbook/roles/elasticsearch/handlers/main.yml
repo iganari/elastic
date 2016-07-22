@@ -1,0 +1,7 @@
+---
+
+- name: es install
+  service: name=elasticsearch state=started enabled=yes
+
+- name: es restart
+  service: name=elasticsearch state=restarted

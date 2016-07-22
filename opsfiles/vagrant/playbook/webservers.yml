@@ -1,0 +1,45 @@
+---
+
+- hosts: es-master
+  roles:
+    - common
+    - java
+    - elasticsearch
+    - kibana
+
+- hosts: es-search
+  roles:
+    - common
+    - java
+    - elasticsearch
+
+- hosts: es-data
+  roles:
+    - common
+    - java
+    - elasticsearch
+
+# - hosts: wercker
+#   roles:
+#     - common
+#     - php5
+#     - fuel
+
+# - hosts: web-servers-rhel
+#   roles:
+#     - centos-common
+#     - centos-apache
+#     - centos-php
+#     - fuel
+# [es-master]
+# 192.168.33.21
+# 
+# [es-search]
+# 
+# 
+# [es-data]
+# ### 192.168.33.232
+# ### 192.168.33.233
+# ### 192.168.33.234
+# ### 192.168.33.235
+# ### # 127.0.0.1 ansible_connection=local

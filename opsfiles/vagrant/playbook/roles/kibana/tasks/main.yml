@@ -1,0 +1,24 @@
+---
+#
+# roles/kibana/tasks/main.yml
+#
+
+- name: download kibana.tgz
+  get_url: >
+    url={{ kibana.dl_url }}
+    dest={{ kibana.file_tgz_name }}
+
+- name: untar kibana.zip
+  command: >
+    tar zxvf {{ kibana.file_tgz_name }} chdir=/opt
+
+- name: create symlink
+  file: >
+    src={{ kibana.file_org_name }}
+    path={{ kibana.file_scr_name }}
+    state=link
+
+- name: setting daemon of kibana
+  shell: >
+    nohup /opt/kibana/bin/kibana &
+  

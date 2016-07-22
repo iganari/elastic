@@ -1,0 +1,16 @@
+---
+- name: get nginx repos
+  yum: name="{{item}}" state=present
+  with_items:
+  - http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+  tags: nginx repo
+
+- name: installing nginx and config on
+  yum: name=nginx state=installed 
+  tags: nginx setting
+  notify: nginx start
+
+### - name: running nginx
+###   service: nginx state=running enabled=yes
+###   tags: nginx on
+###   notify: nginx start
