@@ -1,0 +1,38 @@
+---
+
+- name: install open JDK
+  sudo: yes
+  apt: pkg=python-pycurl update_cache=yes
+
+- name: Add the webupd8 APT repository
+  sudo: yes
+  apt_repository: repo="deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" state=present
+  tags: jave
+
+- name: Automatically accept the Oracle License
+  sudo: yes
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  tags: java
+
+- name: Install Oracle Java 7 SE SDK
+  sudo: yes
+  apt: pkg=oracle-jdk7-installer update-cache=yes state=latest force=yes
+  tags: java
+
+###  - name: get the Jenkins repository
+###    sudo: yes
+###    # get_url: url=http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo dest=/etc/apt/sources.list.d/jenkins.repo
+###    apt_repository: repo="deb http://pkg.jenkins-ci.org/debian binary/  main" state=present
+###  
+###  - name: add the Jenkins keys
+###    sudo: yes
+###    rpm_key: key=http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
+###  
+###  - name: ensure jenkins is at the lastet version
+###    sudo: yes
+###    apt: pkg=jenkins state=latest
+###  
+###  - name: ensure jenkins is running and enaled
+###    service: pkg=jenkins state=running enabled=yes
+
+
