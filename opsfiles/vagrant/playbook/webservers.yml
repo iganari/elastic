@@ -5,6 +5,8 @@
     - common
     - java
     - elasticsearch
+    - kibana
+
 - hosts: es-search
   roles:
     - common
