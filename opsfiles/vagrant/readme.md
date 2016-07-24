@@ -26,7 +26,3 @@ http://192.168.33.22:9200/_plugin/head
 ```
 http://192.168.33.21:5601/
 ```
-
-todo 
-
-kibanaのdaemon化
