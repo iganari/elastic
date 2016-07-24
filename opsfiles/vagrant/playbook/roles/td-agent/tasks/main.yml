@@ -1,0 +1,9 @@
+---
+#
+# roles/td-agent/tasks/main.yml
+# https://toolbelt.treasuredata.com/
+
+- name: install td-agent
+  shell: >
+    curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+  notify: td-agnet start
