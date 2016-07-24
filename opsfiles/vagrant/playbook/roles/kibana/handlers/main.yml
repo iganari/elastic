@@ -1,0 +1,7 @@
+---
+#
+# roles/kibana/handlers/main.yml
+#
+
+- name: start kibana
+  service: name=kibana state=started enabled=yes

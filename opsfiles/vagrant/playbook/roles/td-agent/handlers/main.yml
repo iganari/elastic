@@ -1,0 +1,7 @@
+---
+#
+# roles/td-agent/handlers/main.yml
+#
+
+- name: td-agnet start
+  service: name=td-agent state=started enabled=yes

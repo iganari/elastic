@@ -19,6 +19,10 @@
     state=link
 
 - name: setting daemon of kibana
-  shell: >
-    nohup /opt/kibana/bin/kibana &
-  
+  copy: >
+    src=roles/kibana/files/start-up-script
+    dest=/etc/init.d/kibana
+    owner=root
+    group=root
+    mode=755
+  notify: start kibana
