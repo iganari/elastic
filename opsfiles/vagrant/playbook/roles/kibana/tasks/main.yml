@@ -26,3 +26,6 @@
     group=root
     mode=755
   notify: start kibana
+
+- name: install plugin
+  shell: bin/kibana plugin --install elasticsearch/marvel/2.3.4 chdir=/opt/kibana
