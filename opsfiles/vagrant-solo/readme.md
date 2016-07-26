@@ -28,3 +28,14 @@ http://192.168.33.21:5601/
 ```
 http://192.168.33.31:5601/app/marvel
 ```
+
+
+# hosts
+
+```
+### iganari/elasticsearch
+
+192.168.33.31 elasticsearch.hejda.org
+192.168.33.31            es.hejda.org
+192.168.33.31        kibana.hejda.org
+```
