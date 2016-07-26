@@ -1,0 +1,10 @@
+---
+#
+# roles/kibana/vars/main.yml
+#
+
+kibana:
+  file_scr_name: '/opt/kibana'
+  file_org_name: '/opt/kibana-4.5.3-linux-x64'
+  file_tgz_name: '/opt/kibana-4.5.3-linux-x64.tar.gz'
+  dl_url: 'https://download.elastic.co/kibana/kibana/kibana-4.5.3-linux-x64.tar.gz'

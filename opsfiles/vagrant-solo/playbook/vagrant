@@ -1,0 +1,19 @@
+#
+# vagrant
+#
+[es-solo]
+192.168.33.31
+# [es-master:vars]
+# node=master
+
+# [es-search]
+# 192.168.33.22
+# [es-search:vars]
+# node=search
+
+# [es-data]
+# 192.168.33.23
+# 192.168.33.24
+# 192.168.33.25
+# [es-data:vars]
+# node=data
