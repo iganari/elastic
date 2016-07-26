@@ -1,0 +1,31 @@
+---
+#
+# roles/kibana/tasks/main.yml
+#
+
+- name: download kibana.tgz
+  get_url: >
+    url={{ kibana.dl_url }}
+    dest={{ kibana.file_tgz_name }}
+
+- name: untar kibana.zip
+  command: >
+    tar zxvf {{ kibana.file_tgz_name }} chdir=/opt
+
+- name: create symlink
+  file: >
+    src={{ kibana.file_org_name }}
+    path={{ kibana.file_scr_name }}
+    state=link
+
+- name: setting daemon of kibana
+  copy: >
+    src=roles/kibana/files/start-up-script
+    dest=/etc/init.d/kibana
+    owner=root
+    group=root
+    mode=755
+  notify: start kibana
+
+- name: install plugin
+  shell: bin/kibana plugin --install elasticsearch/marvel/2.3.4 chdir=/opt/kibana
