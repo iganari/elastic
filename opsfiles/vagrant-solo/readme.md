@@ -1,8 +1,8 @@
 # 構成
 
-hostname | IP | Es node role | web
-:-:|:-:|:-:|:-:
-deves | 192.168.33.21 | - | Es(http://192.168.33.22:9200/)<br>kibana(http://192.168.33.21:5601/)<br>td-agentのendpoint  
+hostname | IP | web
+:-:|:-:|:-:
+deves | 192.168.33.21 | Es(http://192.168.33.22:9200/)<br>kibana(http://192.168.33.21:5601/)<br>td-agentのendpoint  
 
 # Elasticsearch
 
