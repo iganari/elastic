@@ -10,7 +10,7 @@ deves | 192.168.33.31 | Es(http://192.168.33.31:9200/)<br>kibana(http://192.168.
 ```
 ### iganari/elasticsearch
 
-192.168.33.31 elasticsearch.hejda.org
+192.168.33.31 elasticsearch.hejda.org   <== vagrant top
 192.168.33.31            es.hejda.org
 192.168.33.31        kibana.hejda.org
 ```
