@@ -2,7 +2,7 @@
 
 hostname | IP | web
 :-:|:-:|:-:
-deves | 192.168.33.31 | Es(http://192.168.33.22:9200/)<br>kibana(http://192.168.33.21:5601/)<br>td-agentのendpoint  
+deves | 192.168.33.31 | Es(http://192.168.33.31:9200/)<br>kibana(http://192.168.33.31:5601/)<br>td-agentのendpoint  
 
 # Elasticsearch
 
