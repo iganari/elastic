@@ -1,0 +1,30 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-6.7"
+  # config.vbguest.auto_update = false
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end                                                        
+
+  config.vm.define :deves do |server|
+    server.vm.network :private_network, ip: "192.168.33.31"
+    server.vm.hostname = 'deves'
+    server.vm.box = "bento/centos-6.7"
+  end
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "dev.es-solo"
+    vb.customize ["modifyvm", :id, "--memory", 1024]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+
+  config.vm.synced_folder "../../", "/opt/dev.es", \
+    :create => true, \
+    :owner => 'root', \
+    :group => 'root', \
+    :mount_options => ['dmode=755,fmode=755']
+
+  config.vm.provision :shell, :path => "ssh/init.sh"
+
+end
