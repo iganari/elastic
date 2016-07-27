@@ -1,0 +1,53 @@
+server {
+    listen      80 default_server;
+    listen [::]:80 default_server;
+    
+    server_name elasticsearch.hejda.org;
+    
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+
+    charset utf-8; 
+    index index.php;
+    error_page 404 /404.html;
+    
+    access_log /var/log/nginx/elasticsearch_access.log;
+    error_log  /var/log/nginx/elasticsearch_error.log;
+
+    location ~* \favicon.ico$ {
+        access_log off;
+        expires 30d;
+        add_header Cache-Control public;
+    }
+
+    location ~* \.(html|jpg|jpeg|gif|css|png|js|ico|swf|woff)$ {
+        gzip_static always;
+        gunzip on;
+        add_header Cache-Control public;
+        etag off;
+    }
+}
+
+server {
+    listen 80;
+    server_name es.hejda.org;
+
+    access_log /var/log/nginx/es_access.log;
+    error_log  /var/log/nginx/es_error.log;
+
+    location / {
+        proxy_pass http://127.0.0.1:9200;
+    }
+}
+
+server {
+    listen 80;
+    server_name kibana.hejda.org;
+
+    access_log /var/log/nginx/kibana_access.log;
+    error_log  /var/log/nginx/kibana_error.log;
+
+    location / {
+        proxy_pass http://127.0.0.1:5601;
+    }
+}
