@@ -51,3 +51,7 @@ http://kibana.hejda.org/app/marvel
 ```
 
 # Serverspec
+
+```
+$ rake spec
+```
