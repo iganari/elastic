@@ -10,6 +10,17 @@
   tags: nginx setting
   notify: nginx start
 
+- name: copy nginx.es.config
+  copy: >
+    src=roles/nginx/templates/elasticsearch.conf.j2
+    dest=/etc/nginx/conf.d/elasticsearch.conf
+    backup=yes
+    group=root
+    owner=root
+    mode=0644    
+  tags: nginx_setting
+
+
 ### - name: running nginx
 ###   service: nginx state=running enabled=yes
 ###   tags: nginx on
