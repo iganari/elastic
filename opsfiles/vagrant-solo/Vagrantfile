@@ -19,10 +19,10 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
-  config.vm.synced_folder "../../", "/opt/dev.es", \
+  config.vm.synced_folder "../../", "/opt/deves", \
     :create => true, \
-    :owner => 'root', \
-    :group => 'root', \
+    :owner => 'vagrant', \
+    :group => 'vagrant', \
     :mount_options => ['dmode=755,fmode=755']
 
   config.vm.provision :shell, :path => "ssh/init.sh"
