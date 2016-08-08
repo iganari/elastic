@@ -2,7 +2,7 @@
 
 hostname | IP | web
 :-:|:-:|:-:
-deves | 192.168.33.31 | Es(http://192.168.33.31:9200/)<br>kibana(http://192.168.33.31:5601/)<br>td-agentのendpoint  
+deves | 192.168.33.31 | Es(http://192.168.33.31:9200/)<br>kibana(http://192.168.33.31:5601/)<br>td-agentのendpoint(作成中) 
 
 
 # hosts
@@ -42,4 +42,10 @@ http://kibana.hejda.org
 ```
 http://192.168.33.31:5601/app/marvel
 http://kibana.hejda.org/app/marvel
+```
+
+# td-agent
+
+```
+作成中
 ```
