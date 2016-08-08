@@ -40,7 +40,7 @@
 - name: add hosts
   lineinfile: >
     dest=/etc/hosts
-    line="{{ item }}"
+    line="{{ item }} "
   with_items:
     - '192.168.33.31 deves'
 
