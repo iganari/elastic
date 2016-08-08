@@ -33,7 +33,7 @@ http://es.hejda.org/_plugin/head
 # kibana
 
 ```
-http://192.168.33.21:5601/
+http://192.168.33.31:5601/
 http://kibana.hejda.org
 ```
 
