@@ -26,8 +26,9 @@ ansible-playbook --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant pl
 }
 
 : "check serverspec" & {
-: "check serverspec" || {
-rake spec -n ## dry-run
+# : "check serverspec" || {
+### dry-run
+rake spec -n
 rake spec -vt
 }
 
