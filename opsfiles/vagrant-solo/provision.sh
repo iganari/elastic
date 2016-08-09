@@ -19,8 +19,19 @@ apt-get -y install ansible
 }
 
 : "ansible-playbook ssh" & {
-# : "ansible-playbook ssh" & {
+# : "ansible-playbook ssh" || {
 chmod 600 ssh/id_rsa-elasticsearch
 ansible-playbook --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
 # ansible-playbook -vvv --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
 }
+
+: "check serverspec" & {
+: "check serverspec" || {
+rake spec -n ## dry-run
+rake spec -vt
+}
+
+
+
+
+
