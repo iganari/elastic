@@ -49,3 +49,9 @@ http://kibana.hejda.org/app/marvel
 ```
 作成中
 ```
+
+# Serverspec
+
+```
+$ rake spec
+```
