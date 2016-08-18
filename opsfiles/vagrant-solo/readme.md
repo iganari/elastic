@@ -44,6 +44,13 @@ http://192.168.33.31:5601/app/marvel
 http://kibana.hejda.org/app/marvel
 ```
 
++ sense
+
+```
+http://192.168.33.31:5601/app/sense
+```
+
+
 # td-agent
 
 ```
