@@ -67,10 +67,3 @@ test query
 ```
 $ rake spec
 ```
-
-
-
-
-
-
-test
