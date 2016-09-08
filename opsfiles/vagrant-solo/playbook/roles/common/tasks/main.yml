@@ -1,4 +1,11 @@
 ---
+# 
+# roles/common/tasks/main.yml
+# 
+
+- name: yum update
+  yum: name=* state=latest
+
 - name: get repos
   yum: name="{{item}}" state=present
   with_items:
