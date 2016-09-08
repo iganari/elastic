@@ -28,4 +28,9 @@
   notify: start kibana
 
 - name: install plugin
-  shell: bin/kibana plugin --install elasticsearch/marvel/2.3.4 chdir=/opt/kibana
+  shell: >
+    bin/kibana plugin --install "{{ item }}"
+    chdir=/opt/kibana
+  with_items:
+    - elasticsearch/marvel/2.3.4
+    - elastic/sense

@@ -1,0 +1,10 @@
+---
+
+- hosts: es-solo
+  roles:
+    - common
+    - java
+    - elasticsearch
+    - td-agent
+    - kibana
+    - nginx

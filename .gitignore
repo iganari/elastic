@@ -4,3 +4,4 @@ jdk*.rpm
 master.zip*
 Elasticsearch-datasets-master*
 *site.retry
+*Gemfile.lock
