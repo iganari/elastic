@@ -14,9 +14,7 @@ yum install -y ansible --enablerepo=epel-testing
 : "ansible-playbook" & {
 # : "ansible-playbook ssh" || {
 PLAYBOOK_PATH='/opt/es-solo/opsfiles/vagrant-solo/playbook'
-# which ansible
 source ~/.bash_profile
-echo env
 /usr/bin/ansible-playbook  -i ${PLAYBOOK_PATH}/vagrant ${PLAYBOOK_PATH}/site.yml
 }
 
