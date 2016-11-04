@@ -2,37 +2,27 @@
 
 set -x 
 
-# : "update apt" & {
-: "update apt" || {
-apt-get -y update
-apt-get -y upgrade
+: "update yum" & {
+yum upgrade -y
+yum install -y epel-release
 }
 
-
-# : "ansible update" & {
-: "ansible update" || {
-apt-get -y install software-properties-common
-apt-add-repository -y ppa:ansible/ansible
-apt-get -y update
-apt-get -y remove ansible
-apt-get -y install ansible
+: "ansible install" & {
+yum install -y ansible --enablerepo=epel-testing
 }
 
-: "ansible-playbook ssh" & {
+: "ansible-playbook" & {
 # : "ansible-playbook ssh" || {
-chmod 600 ssh/id_rsa-elasticsearch
-ansible-playbook --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
-# ansible-playbook -vvv --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
+PLAYBOOK_PATH='/opt/es-solo/opsfiles/vagrant-solo/playbook'
+# which ansible
+source ~/.bash_profile
+echo env
+/usr/bin/ansible-playbook  -i ${PLAYBOOK_PATH}/vagrant ${PLAYBOOK_PATH}/site.yml
 }
 
-: "check serverspec" & {
-# : "check serverspec" || {
+# : "check serverspec" & {
+: "check serverspec" || {
 ### dry-run
 rake spec -n
 rake spec -vt
 }
-
-
-
-
-
