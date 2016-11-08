@@ -2,25 +2,46 @@
 
 set -x 
 
-# : "update apt" & {
-: "update apt" || {
-apt-get -y update
-apt-get -y upgrade
+apt_install_ansible()
+{
+  ### input grub-pc setting
+  echo "set grub-pc/install_devices /dev/sda" | debconf-communicate
+  
+  ### update ubuntu
+  apt-get install -f
+  
+  ### install ansible 
+  # vivid is Ubuntu 15.4, wily is 15.10, xenial is 16.04 
+  CODENAME='xenial'
+  apt install -y software-properties-common
+  apt-add-repository ppa:ansible/ansible
+  apt update
+  apt install -y ansible  
 }
 
+if [ "${1}" = 'local' ]; then
+  ### install ansible
+  apt_install_ansible
 
-# : "ansible update" & {
-: "ansible update" || {
-apt-get -y install software-properties-common
-apt-add-repository -y ppa:ansible/ansible
-apt-get -y update
-apt-get -y remove ansible
-apt-get -y install ansible
-}
+  ### ansible-playbook ssh
+  playbook_dir='/opt/es-cluster/opsfiles/vagrant/playbook'
+  ansible-playbook        -i ${playbook_dir}/local ${playbook_dir}/webserver-elasticsearch.yml
 
-: "ansible-playbook ssh" & {
-# : "ansible-playbook ssh" & {
-chmod 600 ssh/id_rsa-elasticsearch
-ansible-playbook --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
-# ansible-playbook -vvv --private-key='ssh/id_rsa-elasticsearch' -i playbook/vagrant playbook/site.yml
-}
+  # # Force restart mysql
+  # sleep 30
+  # echo -e "\n\n Force restart mysql \n\n"
+  # /etc/init.d/mysql restart
+  
+elif [ "${1}" = 'staging' ]; then
+  KEY='id_rsa-elasticsearch'
+  chmod 600 ssh/${KEY}
+  ansible-playbook  --private-key="ssh/${KEY}" -i staging playbook/webserver-elasticsearch.yml
+
+  # # Force restart mysql
+  # sleep 30
+  # IP=`cat staging | sed -n 2P`
+  # ssh -i ssh/${KEY} root@${IP} '/etc/init.d/mysql restart'
+
+else
+  echo 'you must type local or staging'
+fi
