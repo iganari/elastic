@@ -1,0 +1,24 @@
+{
+  "name": "iganari/package",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "package-ansible-playbook",
+        "version": "1.11.0",
+        "source": {
+          "url": "ssh://git@bitbucket.org/iganari/package-ansible-playbook.git",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    }
+  ],
+  "require": {
+      "package-ansible-playbook": "1.11.0"
+  },
+  "config": {
+    "vendor-dir": "opsfiles/vagrant/vendor/"
+  }
+}
