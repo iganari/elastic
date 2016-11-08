@@ -10,7 +10,7 @@
         "source": {
           "url": "ssh://git@bitbucket.org/iganari/package-ansible-playbook.git",
           "type": "git",
-          "reference": "master"
+          "reference": "feature/1.12.0"
         }
       }
     }
