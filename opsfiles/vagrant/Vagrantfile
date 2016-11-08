@@ -1,49 +1,59 @@
-Vagrant.configure("2") do |config|
-  config.vm.box = "bento/centos-6.7"
+Vagrant.configure(2) do |config|
   # config.vbguest.auto_update = false
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
-  end                                                        
-
-  config.vm.define :deves01 do |server|
-    server.vm.network :private_network, ip: "192.168.33.21"
-    server.vm.hostname = 'deves01'
-    server.vm.box = "bento/centos-6.7"
-  end
-  config.vm.define :deves02 do |server|
-    server.vm.network :private_network, ip: "192.168.33.22"
-    server.vm.hostname = 'deves02'
-  end
-  config.vm.define :deves03 do |server|
-    server.vm.network :private_network, ip: "192.168.33.23"
-    server.vm.hostname = 'deves03'
-  end
-  config.vm.define :deves04 do |server|
-    server.vm.network :private_network, ip: "192.168.33.24"
-    server.vm.hostname = 'deves04'
-  end
-  config.vm.define :deves05 do |server|
-    server.vm.network :private_network, ip: "192.168.33.25"
-    server.vm.hostname = 'deves05'
   end
 
-  config.vm.provider :virtualbox do |vb|
-    # vb.name = "dev.es"
-    vb.customize ["modifyvm", :id, "--memory", 512]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-  end
+  config.vm.define :es01 do |server|
+    ### determined specific IP.
+    server.vm.network "private_network", ip: "192.168.33.21", auto_config: false
+    ### box setting
+    server.vm.box = "bento/ubuntu-16.04"
+    ### vbox name
+    server.vm.hostname = 'es01'
+    ### server setting
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "es01"
+      vb.customize ["modifyvm", :id, "--memory", 512]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+    ### bug fix
+    server.vm.provision 'shell', inline: "ifconfig enp0s8 192.168.33.21" 
+    server.vm.provision 'shell', inline: "sed -i 's/exit\ 0/ifconfig\ enp0s8\ 192\.168\.33\.21/g' /etc/rc.local" 
+    server.vm.provision 'shell', inline: "echo 'exit 0' >> /etc/rc.local" 
+    server.vm.provision 'shell', inline: "chmod 644 /home/vagrant/.ssh/authorized_keys" 
+ end
 
-  config.vm.synced_folder "../../", "/opt/dev.es", \
+  config.vm.define :es02 do |server|
+    ### determined specific IP.
+    server.vm.network "private_network", ip: "192.168.33.22", auto_config: false
+    ### box setting
+    server.vm.box = "bento/ubuntu-16.04"
+    ### vbox name
+    server.vm.hostname = 'es02'
+    ### server setting
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "es02"
+      vb.customize ["modifyvm", :id, "--memory", 1024]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+    ### bug fix
+    server.vm.provision 'shell', inline: "ifconfig enp0s8 192.168.33.22" 
+    server.vm.provision 'shell', inline: "sed -i 's/exit\ 0/ifconfig\ enp0s8\ 192\.168\.33\.22/g' /etc/rc.local" 
+    server.vm.provision 'shell', inline: "echo 'exit 0' >> /etc/rc.local" 
+    server.vm.provision 'shell', inline: "chmod 644 /home/vagrant/.ssh/authorized_keys" 
+ end
+ 
+  ### settitng of synced_folder
+  config.vm.synced_folder "../../", "/opt/es-cluster", \
     :create => true, \
-    :owner => 'root', \
-    :group => 'root', \
-    :mount_options => ['dmode=755,fmode=755']
+    :owner  => 'vagrant', \
+    :group  => 'vagrant', \
+    :mount_options => ['dmode=755,fmode=755'] 
 
-  config.vm.provision :shell, :path => "ssh/init.sh"
-  # config.vm.provision :shell, :path => "env-basic-centos.sh"
-  # config.vm.provision :shell, :path => "env-install_es_2.x.sh"
-  # config.vm.provision :shell, :path => "env-install_kibana_4.5.sh"
+  # config.vm.provision :shell, inline: "/bin/bash /opt/crawler-javpop/opsfiles/vagrant/provision.sh local"
 
 end
