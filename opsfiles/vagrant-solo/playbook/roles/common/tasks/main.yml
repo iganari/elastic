@@ -66,12 +66,14 @@
     - 'net.ipv6.conf.default.disable_ipv6 = 1'
 #   notify: restart network
 
+- name: delete ip6 setting
+  shell: sed 3d -i /etc/hosts
+
 - name: setting date
   shell: "{{item}}"
   with_items:
   - rm -rf /etc/localtime
   - ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-
          
 - name: change cli color
   lineinfile: >
