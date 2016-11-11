@@ -1,6 +1,11 @@
 # how to use
 
 
+### insert
+
+```
+$ curl -XPOST "http://192.168.33.31:9200/eki/manabeshi" -d @${TMP_FILE}
+```
 
 
 ### Delete API
