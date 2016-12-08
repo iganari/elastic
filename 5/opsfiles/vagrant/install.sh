@@ -1,11 +1,11 @@
 #!/bin/bash
 
-es_data='elasticsearch-5.0.2'
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
+apt-get update
+apt-get install -y elasticsearch
 
-cd /var/lib
-curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/${es_data}.tar.gz
-tar zxvf ${es_data}.tar.gz
+sleep 10
 
-cd ${es_data}
-./bin/elasticsearch -p ./pid/elastic.pid &
-echo "kill `cat ./pid/elastic.pid`"
+echo "curl http://127.0.0.1:9200"
