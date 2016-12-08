@@ -1,4 +1,0 @@
----
-
-- name: start iptables
-  command: /etc/network/if-up.d/iptables
