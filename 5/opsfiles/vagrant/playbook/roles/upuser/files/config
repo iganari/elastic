@@ -1,6 +1,0 @@
-Host         bitbucket.org
-StrictHostKeyChecking no
-UserKnownHostsFile=/dev/null
-User         git
-port         22
-Identityfile ~/.ssh/id_rsa-hejda-upuser
