@@ -9,6 +9,7 @@
     - common
     - vagrant
     - java
+    - docker
 
 - hosts: staging
   vars:
