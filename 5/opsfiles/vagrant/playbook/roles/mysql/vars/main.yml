@@ -1,0 +1,10 @@
+---
+#
+# roles/mysql/vars/main.yml
+#
+
+mysql:
+  password_root: dfI83e4o
+  password_db_adm: 10UQ70ta!
+  password_lbs_mypage_dbuser: qdQDAijvQhTcsWFNfc0M2XxukQcuFJ9y
+  password_crawler_javpop_dbuser: G2XzdGuoyl6gI3kXuz7AzDqazS3kJ9Ll

@@ -7,3 +7,4 @@ Elasticsearch-datasets-master*
 *Gemfile.lock
 *composer.lock
 opsfiles/vagrant/vendor
+*site.yml

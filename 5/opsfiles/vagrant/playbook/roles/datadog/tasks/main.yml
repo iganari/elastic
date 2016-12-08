@@ -1,0 +1,9 @@
+---
+#
+# roles/datadog/tasks/main.yml
+#
+
+- name: install datadog
+  shell: >
+    DD_API_KEY={{ datadog.datadog_api_key }} bash -c \
+    "$(curl -L {{ datadog.datadog_source_url }}/install_agent.sh)"

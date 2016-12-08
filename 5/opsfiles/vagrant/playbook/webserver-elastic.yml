@@ -1,0 +1,21 @@
+---
+#
+# webserver-elasticsearch.yml
+#
+- hosts: vagrant
+  vars:
+    - node: elasticsearch
+  roles:
+    - common
+    - vagrant
+    - java
+
+- hosts: staging
+  vars:
+    - node: elasticsearch
+  remote_user: root
+  roles:
+    - common
+    - java
+    - nginx
+    - datadog

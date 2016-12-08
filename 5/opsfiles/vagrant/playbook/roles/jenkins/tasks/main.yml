@@ -1,0 +1,48 @@
+---
+
+- name: add the key for the Debian package repository of Jenkins
+  shell: >
+    wget -q -O - {{ jenkins.dl_url }} | apt-key add -
+ 
+- name: add the following entry
+  lineinfile: >
+    dest=/etc/apt/sources.list
+    line='deb http://pkg.jenkins-ci.org/debian binary/'
+
+- name: install jenkins
+  apt: pkg=jenkins update_cache=yes state=latest
+
+- name: create ssh setting
+  file: >
+    path="{{ item }}"
+    state=directory
+    mode=0700
+    group=jenkins
+    owner=jenkins
+    force=yes
+  with_items:
+  - /var/lib/jenkins/.ssh
+  ignore_errors: true
+
+- name: copy ssh config
+  copy: >
+    src=roles/jenkins/files/config
+    dest=/var/lib/jenkins/.ssh/config
+    backup=yes
+    group=jenkins
+    owner=jenkins
+    mode=0644
+
+- name: setting NOPASSWORD
+  lineinfile: >
+    dest=/etc/sudoers
+    backup=yes
+    line='jenkins ALL=(ALL) NOPASSWD: ALL'
+  ignore_errors: true
+
+- name: copy .bachrc
+  shell: cp /root/.bashrc            \
+            /var/lib/jenkins/.bashrc \
+         &&                          \
+         chown jenkins.jenkins       \
+         /var/lib/jenkins/.bashrc

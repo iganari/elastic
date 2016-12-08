@@ -1,0 +1,11 @@
+---
+
+# - name: iptables stop
+#   service: name=iptables state=stopped enabled=no
+
+- name: iptables setting
+  copy: >
+    src=roles/iptables/templates/iptables.j2
+    dest=/etc/network/if-up.d/iptables
+    mode="u=rwx,g=rx,o=rx"
+#   notify: start iptables

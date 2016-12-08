@@ -1,0 +1,48 @@
+---
+
+- name: get public PGP Key 
+  apt_key: url={{ nginx.pgp_url }} state=present
+
+### vivid is Ubuntu 15.4, wily is 15.10, xenial is 16.04
+- name: get official repository
+  lineinfile: >
+    dest=/etc/apt/sources.list
+    line='{{ item }} {{ nginx.repo_url }} xenial nginx'
+  with_items:
+    - deb
+    - deb-src
+
+- name: install nginx
+  apt: pkg="{{item}}" update_cache=yes
+  with_items:
+  - nginx
+
+- name: copy nginx.default.config
+  copy: >
+    src=roles/nginx/templates/nginx.conf.j2
+    dest=/etc/nginx/nginx.conf
+    force=yes
+    backup=yes
+    group=root
+    owner=root
+    mode=0644    
+
+- name: copy nginx.jenkins.config
+  copy: >
+    src=roles/nginx/templates/jenkins.conf.j2
+    dest=/etc/nginx/conf.d/jenkins.conf
+    backup=yes
+    group=root
+    owner=root
+    mode=0644    
+  when: node == 'jenkins-internal'
+
+- name: copy ssl-sh2
+  copy: >
+    src=roles/nginx/files/ssl-sha2
+    dest=/etc/nginx/
+    backup=yes
+    group=root
+    owner=root
+    mode=0644    
+  notify: restart nginx

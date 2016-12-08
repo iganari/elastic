@@ -1,0 +1,9 @@
+---
+#
+# roles/nginx/vars/main.yml
+#
+nginx:
+  pgp_url:  http://nginx.org/keys/nginx_signing.key
+  repo_url: http://nginx.org/packages/ubuntu/
+
+  

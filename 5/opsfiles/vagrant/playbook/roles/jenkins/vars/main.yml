@@ -1,0 +1,6 @@
+---
+#
+# roles/jenkins/vars/main.yml
+#
+jenkins:
+  dl_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
